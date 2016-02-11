@@ -12,17 +12,20 @@
     </header>
 
     <main>
-      <div>
-        <form method="post" action="">
-          <p>
-            <label for="name_input">Login: </label>
-            <input type="text" name="name_input" id="name_input"/> <br/>
-            <label for="pass_input">Password: </label>
-            <input type="password" name="pass_input" id="pass_input"/> <br />
-            <input type="button" value="Register" />
-            <input type="button" value="Connect"/>
-          </p>
-        </form>
+      <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+          <form method="post" action="/login">
+            <div class="form-group">
+              <label for="username">Login</label>
+              <input type="text" class="form-control" name="username"/>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password"/>
+            </div>
+            <input type="submit" class="btn btn-warning btn-lgbtn btn-warning btn-lg" value="Log In"/>
+          </form>
+        </div>
       </div>
     </main>
 
