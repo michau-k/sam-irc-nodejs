@@ -13,14 +13,14 @@ var isValidPassword = function(user, password) {
 passport.use(new passportLocal.Strategy(function(username, password, done){
   userModel.findByUsername(username, function(user) {
     if (!user) {
-      console.log('No user was found withe the username:', username);
+      console.log('No user was found with the username [ERROR]:', username);
       return done(null, null);
     }
     else if (!isValidPassword) {
-      console.log('Password does not match')
+      console.log('Password does not match [ERROR]')
       return done(null, null);
     }
-    console.log('User authenticated:', user.username);
+    console.log('User authenticated [SUCCESS]:', user.username);
     return done(null, user);
   });
 }));
@@ -42,20 +42,20 @@ var newUser = function(req, res) {
   if (!newUsername || !newPassword ||
       newUsername.length < 3 || newPassword.length < 3) {
         console.log('Signin up action [ERROR]: form was not correct');
-        res.redirect('/login');
+        res.redirect('/login/signup/invalid');
         return ;
       }
   userModel.findByUsername(newUsername, function(user) {
     if (user) {
       console.log('Signing up action [ERROR]: username [' + newUsername
       + '] already exists');
-      res.redirect('/login');
+      res.redirect('/login/signup/taken');
     }
     else {
       var hashPassword = bcrypt.hashSync(newPassword);
       userModel.createUser(newUsername, hashPassword, function() {
         console.log('Signin up action [SUCCESS]');
-        res.redirect('/login');
+        res.redirect('/login/signup/success');
       });
     }
   });

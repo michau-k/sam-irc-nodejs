@@ -12,14 +12,36 @@
     </header>
 
     <main>
-      <div>
-        <p>Gratz, you're now on the main page <a href="/logout">Log out</a></p>
+      <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+          <form method="post" action="" id="form_chat">
+            <div class="input-group">
+              <input type="text" class="form-control" name="message" id="message"/>
+              <span class="input-group-btn">
+                <input class="btn btn-default"
+                    type="submit" name="send_message" value="Send"/>
+              </span>
+            </div>
+          </form>
+
+          <section id="messages_zone">
+          </section>
+
+        </div>
       </div>
     </main>
 
     <footer>
-        <% include ../commons/footer %>
+      <a href="/logout" class="btn btn-warning">
+        Log Out
+      </a>
+      <br />
+      <% include ../commons/footer %>
     </footer>
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/scripts/chat.js"></script>
 
   </body>
 </html>

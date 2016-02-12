@@ -13,7 +13,19 @@
 
     <main>
       <div class="container">
+        
         <div class="col-sm-6 col-sm-offset-3">
+          <% if (message != '' && !error) { %>
+              <div class="alert alert-success">
+                <strong>Success!</strong> <%=message%>
+              </div>
+          <% } %>
+          <% if (message != '' && error) { %>
+              <div class="alert alert-danger">
+                <strong>Error!</strong> <%=message%>
+              </div>
+          <% } %>
+
           <form method="post" action="/signin" id="form_login">
             <div class="form-group">
               <label for="username">Login</label>

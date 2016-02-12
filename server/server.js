@@ -7,6 +7,7 @@ const expressSession = require('express-session');
 // locals modules
 const routes = require('./routes');
 const auth = require('./modules/auth');
+const socket = require('./modules/socket')
 
 const app = express();
 const port = 8080;
@@ -33,6 +34,8 @@ app.use(auth.passport.session());
 // initialize all routes
 routes.setUpRoutes(app, auth);
 
-app.listen(port, function() {
+const server = app.listen(port, function() {
     console.log("Server is on, now listening on port [" + port + "]");
 });
+
+socket.setUpSockets(server);
