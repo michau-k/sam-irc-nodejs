@@ -32,5 +32,12 @@ var findById = function(id, done) {
   User.findById(id).then(done);
 };
 
+var createUser = function(username, password, done) {
+  User.create({username: username, password: password}).then(
+    done
+  );
+}
+
 exports.findByUsername = findByUsername;
 exports.findById = findById;
+exports.createUser = createUser;

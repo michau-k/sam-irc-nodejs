@@ -1,9 +1,13 @@
 // NPM modules
 const passport = require('passport');
 const passportLocal = require('passport-local');
-
+const bcrypt = require('bcrypt-nodejs');
 // locals modules
 const userModel = require('../models/user');
+
+var isValidPassword = function(user, password) {
+    return bcrypt.compareSync(password, user.password);
+};
 
 // Login strategy
 passport.use(new passportLocal.Strategy(function(username, password, done){
@@ -12,7 +16,7 @@ passport.use(new passportLocal.Strategy(function(username, password, done){
       console.log('No user was found withe the username:', username);
       return done(null, null);
     }
-    else if (user.password != password) {
+    else if (!isValidPassword) {
       console.log('Password does not match')
       return done(null, null);
     }
@@ -31,4 +35,31 @@ passport.deserializeUser(function(id, done) {
   });
 })
 
+var newUser = function(req, res) {
+  var newUsername = req.body.username;
+  var newPassword = req.body.password;
+
+  if (!newUsername || !newPassword ||
+      newUsername.length < 3 || newPassword.length < 3) {
+        console.log('Signin up action [ERROR]: form was not correct');
+        res.redirect('/login');
+        return ;
+      }
+  userModel.findByUsername(newUsername, function(user) {
+    if (user) {
+      console.log('Signing up action [ERROR]: username [' + newUsername
+      + '] already exists');
+      res.redirect('/login');
+    }
+    else {
+      var hashPassword = bcrypt.hashSync(newPassword);
+      userModel.createUser(newUsername, hashPassword, function() {
+        console.log('Signin up action [SUCCESS]');
+        res.redirect('/login');
+      });
+    }
+  });
+}
+
 exports.passport = passport;
+exports.newUser = newUser;

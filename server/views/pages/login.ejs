@@ -14,7 +14,7 @@
     <main>
       <div class="container">
         <div class="col-sm-6 col-sm-offset-3">
-          <form method="post" action="/login">
+          <form method="post" action="/signin" id="form_login">
             <div class="form-group">
               <label for="username">Login</label>
               <input type="text" class="form-control" name="username"/>
@@ -23,15 +23,27 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password"/>
             </div>
-            <input type="submit" class="btn btn-warning btn-lgbtn btn-warning btn-lg" value="Log In"/>
+            <input type="button"
+                id="button_signin"
+                class="btn btn-warning btn-lgbtn btn-warning btn-lg"
+                value="Sign In"/>
+            <input type="button"
+                id="button_signup"
+                class="btn btn-warning btn-lgbtn btn-warning btn-lg"
+                value="Sign up"/>
           </form>
         </div>
       </div>
     </main>
 
-    <footer>
+    <footer class="container">
+      <div class="col-sm-6 col-sm-offset-3">
         <% include ../commons/footer %>
+      </div>
     </footer>
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/scripts/login.js"></script>
 
   </body>
 </html>

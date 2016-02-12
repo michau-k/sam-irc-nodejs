@@ -1,7 +1,7 @@
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 const ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut;
 
-var setUpRoutes = function(app, passport) {
+var setUpRoutes = function(app, auth) {
   app.get('/', ensureLoggedIn('/login'), function(req, res) {
     res.render('pages/chat');
   });
@@ -10,10 +10,12 @@ var setUpRoutes = function(app, passport) {
     res.render('pages/login');
   });
 
-  app.post('/login', passport.authenticate('local', {
+  app.post('/signin', auth.passport.authenticate('local', {
         successRedirect : '/',
         failureRedirect : '/login'
   }));
+
+  app.post('/signup', auth.newUser);
 
   app.get('/chat', ensureLoggedIn('/login'), function(req, res) {
     res.render('pages/chat');

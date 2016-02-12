@@ -31,7 +31,7 @@ app.use(auth.passport.initialize());
 app.use(auth.passport.session());
 
 // initialize all routes
-routes.setUpRoutes(app, auth.passport);
+routes.setUpRoutes(app, auth);
 
 app.listen(port, function() {
     console.log("Server is on, now listening on port [" + port + "]");
