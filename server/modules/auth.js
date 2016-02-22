@@ -16,7 +16,7 @@ passport.use(new passportLocal.Strategy(function(username, password, done){
       console.log('No user was found with the username [ERROR]:', username);
       return done(null, null);
     }
-    else if (!isValidPassword) {
+    else if (!isValidPassword(user, password)) {
       console.log('Password does not match [ERROR]')
       return done(null, null);
     }

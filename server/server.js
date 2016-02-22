@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 
-// locals modules
+// local modules
 const routes = require('./routes');
 const auth = require('./modules/auth');
 const socket = require('./modules/socket')

@@ -3,9 +3,25 @@ h1 {
   text-align: center;
 }
 
+header {
+  margin-bottom: 20px;
+}
+
+body {
+  -webkit-app-region: drag;
+}
+
 footer {
   text-align: center;
   margin-top: 20px;
+}
+
+input {
+  -webkit-app-region: no-drag;
+}
+
+a {
+  -webkit-app-region: no-drag;
 }
 
 #copyright {
