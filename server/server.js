@@ -11,6 +11,11 @@ const socket = require('./modules/socket')
 
 const app = express();
 const port = 8080;
+const sessionMiddleware = expressSession({
+  secret: 'super-secret-irc',
+  resave: false,
+  saveUninitialized: false
+});
 
 // set up the view engine to use ejs
 app.set('view engine', 'ejs');
@@ -21,11 +26,7 @@ app.use(express.static(__dirname + '/public'));
 // tell the server to use those middlewares for proper use of passport
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
-app.use(expressSession({
-  secret: 'super-secret-irc',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(sessionMiddleware);
 
 // initialize passport for the server
 app.use(auth.passport.initialize());
