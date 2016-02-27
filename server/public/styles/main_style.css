@@ -29,10 +29,20 @@ a {
   -webkit-app-region: no-drag;
 }
 
+.msg-username {
+  color: orange;
+  font-weight: bold;
+}
+
 #copyright {
   margin-top: 20px;
 }
 
 #messages_zone {
+  -webkit-app-region: no-drag;
   margin-top: 20px;
+  height: 175px;
+  overflow: hidden;
+  overflow-y: scroll;
+  word-wrap: break-word;
 }

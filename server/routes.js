@@ -3,7 +3,7 @@ const ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut;
 
 var setUpRoutes = function(app, auth) {
   app.get('/', ensureLoggedIn('/login'), function(req, res) {
-    res.render('pages/chat');
+    res.render('pages/chat', {username: req.user.username});
   });
 
   app.get('/login', ensureLoggedOut('/chat'), function(req, res) {
@@ -38,7 +38,7 @@ var setUpRoutes = function(app, auth) {
   app.post('/signup', auth.newUser);
 
   app.get('/chat', ensureLoggedIn('/login'), function(req, res) {
-    res.render('pages/chat');
+    res.render('pages/chat', {username: req.user.username});
   });
 
   app.get('/logout', function(req, res) {

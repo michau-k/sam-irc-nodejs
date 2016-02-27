@@ -26,6 +26,8 @@ app.on('ready', function() {
     height: 450,
     'min-width': 450,
     'min-height': 450,
+    'max-width': 450,
+    'max-height': 450,
     frame: false
   });
 

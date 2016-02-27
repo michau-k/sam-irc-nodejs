@@ -6,10 +6,20 @@ var setUpSockets = function(server) {
   var io = socketIO.listen(server);
   io.sockets.on('connection', function (socket) {
     console.log('New client connected onn its socket [SUCCESS]');
-    socket.broadcast.emit('new_client');
-    socket.on('message', function (message) {
-        message = ent.encode(message);
-        socket.broadcast.emit('message', {message: message});
+
+    socket.on('join', function (data) {
+      socket.join(data.username);
+      socket.broadcast.emit('new_client', data);
+    });
+
+    socket.on('message_all', function (data) {
+      data.message = ent.encode(data.message);
+      socket.broadcast.emit('message_all', data);
+    });
+
+    socket.on('message_private', function (data) {
+      data.message = ent.encode(data.message);
+      io.sockets.in(data.dest).emit('message_private', data);
     });
 
   });
