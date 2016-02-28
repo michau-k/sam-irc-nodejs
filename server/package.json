@@ -4,6 +4,7 @@
   "description": "server side for the irc training project",
   "main": "server.js",
   "scripts": {
+    "install": "cd ./modules/cpp/popstring/ && node-gyp configure && node-gyp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "michau_k",
