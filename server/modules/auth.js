@@ -2,7 +2,8 @@
 const passport = require('passport');
 const passportLocal = require('passport-local');
 const bcrypt = require('bcrypt-nodejs');
-// locals modules
+
+// local modules
 const userModel = require('../models/user');
 
 var isValidPassword = function(user, password) {

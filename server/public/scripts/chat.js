@@ -4,7 +4,7 @@ socket.emit('join', {username: $('#hidden_username').val()});
 
 socket.on('message_all', function(data) {
   insertMessageAll(data.username, data.message);
-})
+});
 
 ;socket.on('message_private', function(data) {
   insertMessagePrivate(data.username, data.message, false);

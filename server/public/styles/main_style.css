@@ -17,15 +17,16 @@ body {
 }
 
 footer {
+  -webkit-app-region: drag;
   text-align: center;
-  margin-top: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: grey;
+  padding: 10px;
 }
 
-input {
-  -webkit-app-region: no-drag;
-}
-
-a {
+input, a, #messages_zone {
   -webkit-app-region: no-drag;
 }
 
@@ -39,9 +40,8 @@ a {
 }
 
 #messages_zone {
-  -webkit-app-region: no-drag;
   margin-top: 20px;
-  height: 175px;
+  height: 185px;
   overflow: hidden;
   overflow-y: scroll;
   word-wrap: break-word;
