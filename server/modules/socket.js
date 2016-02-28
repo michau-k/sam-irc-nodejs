@@ -3,7 +3,7 @@ const socketIO = require('socket.io');
 const ent = require('ent');
 
 // local module
-const popstring = require('./popstring');
+const cluster = require('./cluster');
 
 var setUpSockets = function(server) {
   var io = socketIO.listen(server);
@@ -13,7 +13,7 @@ var setUpSockets = function(server) {
     socket.on('join', function (data) {
       socket.join(data.username);
       socket.broadcast.emit('new_client', data);
-      io.sockets.emit('message_all', {username: 'SERVER', message: popstring.getString()});
+      cluster.launch(io.sockets.in(data.username));
     });
 
     socket.on('message_all', function (data) {

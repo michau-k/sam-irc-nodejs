@@ -14,6 +14,10 @@ socket.on('new_client', function(data) {
   $('#messages_zone').prepend('<p><em>'+ data.username + ' joined the chat.</em></p>');
 });
 
+socket.on('message_server', function(data) {
+  $('#messages_zone').prepend('<p class="server">SERVER: <em>'+ data.message +'</em></p>');
+});
+
 $('#form_chat').submit(function () {
   var message = $('#message').val();
   checkCommand(message);

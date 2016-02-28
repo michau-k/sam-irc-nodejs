@@ -30,6 +30,11 @@ input, a, #messages_zone {
   -webkit-app-region: no-drag;
 }
 
+.server {
+  color: red;
+  background-color: #f4cad3;
+}
+
 .msg-username {
   color: orange;
   font-weight: bold;
